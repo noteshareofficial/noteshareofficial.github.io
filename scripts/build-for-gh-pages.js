@@ -2,7 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 // This script modifies the built app to work on GitHub Pages
+// Get repository name from package.json or environment variable
+const repoName = process.env.GITHUB_REPOSITORY ? 
+  process.env.GITHUB_REPOSITORY.split('/')[1] : 
+  'your-repo-name'; // Replace with your repo name as fallback
 
+// Path segments to keep in the 404.html redirect script
+const pathSegmentsToKeep = 1; // This is correct for username.github.io/repo-name
 // Function to create the 404.html file that will redirect to index.html
 function create404Redirect() {
   const redirectContent = `
